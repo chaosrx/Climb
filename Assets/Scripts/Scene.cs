@@ -10,18 +10,28 @@ public enum SceneState
     GameOver
 }
 
-public class Scene : ClimbBehavior
+public class Scene : FSMBase
 {
+    public Transform player;
+    public Vector3 camBasePos;
+
     protected override void Awake()
     {
         base.Awake();
         game.SetScene(this);
     }
 
+    private void Start()
+    {
+        state = SceneState.Loading;
+    }
+
     #region Loading
 
     private IEnumerator LoadingEnterState()
     {
+        yield return null;
+        state = SceneState.Play;
         yield break;
     }
 
@@ -50,6 +60,10 @@ public class Scene : ClimbBehavior
     private IEnumerator PlayEnterState()
     {
         yield break;
+    }
+    private void PlayUpdate()
+    {
+
     }
 
     #endregion
