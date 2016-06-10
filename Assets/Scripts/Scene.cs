@@ -12,8 +12,7 @@ public enum SceneState
 
 public class Scene : FSMBase
 {
-    public Transform player;
-    public Vector3 camBasePos;
+    public Player player { private set; get; }
 
     protected override void Awake()
     {
@@ -26,11 +25,17 @@ public class Scene : FSMBase
         state = SceneState.Loading;
     }
 
+    public void SetPlayer(Player player)
+    {
+        this.player = player;
+    }
+
     #region Loading
 
     private IEnumerator LoadingEnterState()
     {
         yield return null;
+        game.jumperCam.state = SceneState.Play;
         state = SceneState.Play;
         yield break;
     }
@@ -41,6 +46,7 @@ public class Scene : FSMBase
 
     private IEnumerator TitleEnterState()
     {
+        game.jumperCam.state = SceneState.Title;
         yield break;
     }
 
@@ -50,6 +56,7 @@ public class Scene : FSMBase
 
     private IEnumerator MainEnterState()
     {
+        game.jumperCam.state = SceneState.Main;
         yield break;
     }
 
@@ -59,11 +66,13 @@ public class Scene : FSMBase
 
     private IEnumerator PlayEnterState()
     {
+        game.jumperCam.state = SceneState.Play;
         yield break;
     }
     private void PlayUpdate()
     {
-
+        input.ManualUpdate();
+        player.ManualUpdate();
     }
 
     #endregion
@@ -72,6 +81,7 @@ public class Scene : FSMBase
 
     private IEnumerator GameOverEnterState()
     {
+        game.jumperCam.state = SceneState.GameOver;
         yield break;
     }
 

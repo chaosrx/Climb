@@ -18,12 +18,16 @@ public class Game
     public Scene scene { private set; get; }
     public Audio audio { private set; get; }
     public UIActionManager ui { private set; get; }
-    public OVRCameraRig camRig { private set; get; }
+    public OVRCameraRig ovrCamRig { private set; get; }
+    public OVRManager ovrMgr { private set; get; }
+    public JumperCamera jumperCam { private set; get; }
 
     public Game()
     {
         audio = new Audio();
-        camRig = GameObject.FindObjectOfType(typeof(OVRCameraRig)) as OVRCameraRig;
+        ovrCamRig = GameObject.FindObjectOfType(typeof(OVRCameraRig)) as OVRCameraRig;
+        ovrMgr = GameObject.FindObjectOfType(typeof(OVRManager)) as OVRManager;
+        jumperCam = GameObject.FindObjectOfType(typeof(JumperCamera)) as JumperCamera;
     }
 
     public void SetScene(Scene scene)

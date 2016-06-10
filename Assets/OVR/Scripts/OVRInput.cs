@@ -386,7 +386,7 @@ public static class OVRInput
     public static Quaternion GetLocalControllerAngularVelocity(OVRInput.Controller controllerType)
     {
         switch (controllerType)
-        {
+        {   
             case Controller.LTouch:
                 return OVRPlugin.GetNodeVelocity(OVRPlugin.Node.HandLeft).ToOVRPose().orientation;
             case Controller.RTouch:

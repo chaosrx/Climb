@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public class UIActionManager : ClimbBehavior
+public class UIActionManager : JumperBehavior
 {
+    public Text rig;
+    public Text tracking;
+
     public GameObject titleWindow;
 
     public GameObject mainWindow;

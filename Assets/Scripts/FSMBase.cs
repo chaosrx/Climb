@@ -3,7 +3,7 @@ using System.Collections;
 using System.Reflection;
 using System;
 
-public class FSMBase : ClimbBehavior 
+public class FSMBase : JumperBehavior 
 {
     private Action DoUpdate = DoNothing;
     private Action DoManualUpdate = DoNothing;
@@ -56,7 +56,7 @@ public class FSMBase : ClimbBehavior
     {
         DoUpdate();
     }
-    protected override void ManualUpdate()
+    public override void ManualUpdate()
     {
         base.ManualUpdate();
         DoManualUpdate();

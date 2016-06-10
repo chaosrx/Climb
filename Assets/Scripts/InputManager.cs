@@ -4,18 +4,12 @@ using System.Collections.Generic;
 
 public enum InputType
 {
-    X = 0,
-    Y,
-    A,
+    A = 0,
     B,
-    LT,
-    LB,
-    RT,
-    RB,
     Max
 }
 
-public class InputManager : ClimbBehavior
+public class InputManager : JumperBehavior
 {
     private static InputManager instance = null;
 
@@ -30,7 +24,10 @@ public class InputManager : ClimbBehavior
         }
     }
 
+    public Vector2 joyStickDirection { private set; get; }
+
     private Dictionary<InputType , bool> input = new Dictionary<InputType,bool>();
+    
 
     protected override void Awake()
     {
@@ -45,6 +42,21 @@ public class InputManager : ClimbBehavior
         }
     }
 
+    public override void ManualUpdate()
+    {
+        base.ManualUpdate();
+        joyStickDirection = new Vector2(Input.GetAxis("Horizontal") ,Input.GetAxis("Vertical"));
+
+        if (Input.GetButtonDown("Fire1") && !IsKeyDown(InputType.A))
+            KeyDown(InputType.A);
+        if (Input.GetButtonUp("Fire1") && IsKeyDown(InputType.A))
+            KeyUp(InputType.A);
+        if (Input.GetButtonDown("Fire2") && !IsKeyDown(InputType.B))
+            KeyDown(InputType.B);
+        if (Input.GetButtonUp("Fire2") && IsKeyDown(InputType.B))
+            KeyUp(InputType.B);
+    }
+
     public bool IsKeyDown(InputType type)
     {
         bool tmp;
@@ -56,14 +68,10 @@ public class InputManager : ClimbBehavior
     }
     public void KeyDown(InputType type)
     {
-        bool tmp;
-        if (input.TryGetValue(type, out tmp))
-            tmp = true;
+        input[type] = true;
     }
     public void KeyUp(InputType type)
     {
-        bool tmp;
-        if (input.TryGetValue(type, out tmp))
-            tmp = false;
+        input[type] = false;
     }
 }
