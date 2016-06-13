@@ -35,8 +35,8 @@ public class Scene : FSMBase
     private IEnumerator LoadingEnterState()
     {
         yield return null;
-        game.jumperCam.state = SceneState.Play;
-        state = SceneState.Play;
+//        game.jumperCam.state = SceneState.Play;
+//        state = SceneState.Play;
         yield break;
     }
 
