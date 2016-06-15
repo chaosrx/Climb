@@ -44,6 +44,8 @@ public class UIActionManager : JumperBehavior
 
 	public Material BlackSkybox;
 
+	public GameObject PauseImg;
+
 	public GameObject[]  modeling;
 
 //	public List<GameObject> MapImage = new List<GameObject>();
@@ -70,6 +72,16 @@ public class UIActionManager : JumperBehavior
 	public bool Imready=false;
 
 	public GameObject[] gameEnterButton;
+
+	public GameObject restartButton;
+
+	public GameObject stageSelectButton;
+
+	public GameObject RestartPage;
+
+
+
+//	public bool IsRestartButton;
 
 	bool ImageClick=false;
 	bool selectImageFreeze = false;
@@ -124,6 +136,26 @@ public class UIActionManager : JumperBehavior
 //			nowSelectedType = lastSelectedType;
 //		}
 	}
+
+	public void RestartPageAppear()
+	{
+		RestartPage.SetActive (true);
+	}
+	public void OnGameOverButtonClick(bool isRestartButton)
+	{
+		if (isRestartButton) {
+			stageSelectButton.SetActive (false);
+			DOTween.Play ("RestartButtonTextColor");
+			DOTween.Play ("ButtonDisappear");
+			DOTween.Play ("RestartButtonMove");
+		}
+		if (!isRestartButton) {
+			restartButton.SetActive (false);
+			DOTween.Play ("RestartButtonTextColor");
+			DOTween.Play ("ButtonDisappear");
+			DOTween.Play ("StageSelectButtonMove");
+		}
+    }
     public void ActiveTitleWindow()
     {
 
@@ -142,13 +174,6 @@ public class UIActionManager : JumperBehavior
 		DOTween.Play("SO");
 		DOTween.Play ("TTO");
 		DOTween.Play ("SM");
-
-
-
-
-
-
-
 
 //		titleName.SetActive (false);
 
@@ -267,6 +292,10 @@ public class UIActionManager : JumperBehavior
 	{
 		gameEnterButton [typecount].SetActive (true);
 		
+	}
+	public void Pause()
+	{
+		Time.timeScale = 0;
 	}
 	public void SkyboxFreeze()
 	{
