@@ -69,6 +69,13 @@ public class UIActionManager : JumperBehavior
 
 	public bool Imready=false;
 
+	public GameObject[] gameEnterButton;
+
+	bool ImageClick=false;
+	bool selectImageFreeze = false;
+	int typecount=0;
+	bool skyBoxFreeze = false;
+
 
 
 
@@ -231,10 +238,7 @@ public class UIActionManager : JumperBehavior
 
 		
 	}
-	bool ImageClick=false;
-	bool selectImageFreeze = false;
-	int typecount=0;
-	bool skyBoxFreeze = false;
+
 
 	public void OnStageSelectClick(int typeCount)
 	{
@@ -258,6 +262,11 @@ public class UIActionManager : JumperBehavior
 	public void ModelingAppear()
 	{
 		modeling [typecount].SetActive (true);
+	}
+	public void GameEnterButtonAppear()
+	{
+		gameEnterButton [typecount].SetActive (true);
+		
 	}
 	public void SkyboxFreeze()
 	{
