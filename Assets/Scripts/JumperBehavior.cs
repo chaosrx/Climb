@@ -11,6 +11,7 @@ public class JumperBehavior : MonoBehaviour
         game = Game.Instance;
         input = InputManager.Instance;
     }
+
     public virtual void ManualUpdate()
     {
 
